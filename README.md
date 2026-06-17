@@ -10,6 +10,7 @@ You must manually import all required files from Vivado to Moku compile : https:
 Then you'll want to create a new top level file in order to match the Input/Output name of the device.
 Below, the TOP_LEVEL I made for the project :
 
+```vhdl
 library IEEE;
 use IEEE.Std_Logic_1164.all;
 use IEEE.Numeric_Std.all;
@@ -52,3 +53,4 @@ begin
         );
 
 end architecture;
+```
