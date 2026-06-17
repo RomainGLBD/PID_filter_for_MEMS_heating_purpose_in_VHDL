@@ -1,0 +1,360 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri May 29 14:37:05 2026
+# Process ID         : 12132
+# Current directory  : C:/Users/Galbardi/MokuDo_PID_control/MokuDo_PID_control.runs/synth_1
+# Command line       : vivado.exe -log Top_level.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_level.tcl
+# Log file           : C:/Users/Galbardi/MokuDo_PID_control/MokuDo_PID_control.runs/synth_1/Top_level.vds
+# Journal file       : C:/Users/Galbardi/MokuDo_PID_control/MokuDo_PID_control.runs/synth_1\vivado.jou
+# Running On         : pc_romain
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) 5 210H
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16755 MB
+# Swap memory        : 3087 MB
+# Total Virtual      : 19842 MB
+# Available Virtual  : 8551 MB
+#-----------------------------------------------------------
+source Top_level.tcl -notrace
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:07 . Memory (MB): peak = 539.094 ; gain = 222.625
+Command: synth_design -top Top_level -part xc7a100tcsg324-3
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 13276
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1079.727 ; gain = 536.660
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Top_level' [C:/Users/Galbardi/MokuDo_PID_control/Top_level.vhd:19]
+INFO: [Synth 8-638] synthesizing module 'Error' [C:/Users/Galbardi/MokuDo_PID_control/Error.vhd:19]
+WARNING: [Synth 8-614] signal 'error_calcul' is read in the process but is not in the sensitivity list [C:/Users/Galbardi/MokuDo_PID_control/Error.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'Error' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/Error.vhd:19]
+INFO: [Synth 8-638] synthesizing module 'P_filter' [C:/Users/Galbardi/MokuDo_PID_control/P_filter.vhd:20]
+WARNING: [Synth 8-614] signal 'proportional_calcul' is read in the process but is not in the sensitivity list [C:/Users/Galbardi/MokuDo_PID_control/P_filter.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'P_filter' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/P_filter.vhd:20]
+INFO: [Synth 8-638] synthesizing module 'I_filter' [C:/Users/Galbardi/MokuDo_PID_control/I_filter.vhd:19]
+WARNING: [Synth 8-614] signal 'integral_calcul' is read in the process but is not in the sensitivity list [C:/Users/Galbardi/MokuDo_PID_control/I_filter.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'I_filter' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/I_filter.vhd:19]
+INFO: [Synth 8-638] synthesizing module 'D_filter' [C:/Users/Galbardi/MokuDo_PID_control/D_filter.vhd:40]
+WARNING: [Synth 8-614] signal 'derivate_calcul' is read in the process but is not in the sensitivity list [C:/Users/Galbardi/MokuDo_PID_control/D_filter.vhd:46]
+INFO: [Synth 8-256] done synthesizing module 'D_filter' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/D_filter.vhd:40]
+INFO: [Synth 8-638] synthesizing module 'previous_error_reg' [C:/Users/Galbardi/MokuDo_PID_control/preview_error_reg.vhd:17]
+WARNING: [Synth 8-614] signal 'error_reg' is read in the process but is not in the sensitivity list [C:/Users/Galbardi/MokuDo_PID_control/preview_error_reg.vhd:22]
+INFO: [Synth 8-256] done synthesizing module 'previous_error_reg' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/preview_error_reg.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'Sum_filter' [C:/Users/Galbardi/MokuDo_PID_control/Sum_filter.vhd:39]
+WARNING: [Synth 8-614] signal 'sum_calcul' is read in the process but is not in the sensitivity list [C:/Users/Galbardi/MokuDo_PID_control/Sum_filter.vhd:45]
+INFO: [Synth 8-256] done synthesizing module 'Sum_filter' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/Sum_filter.vhd:39]
+INFO: [Synth 8-256] done synthesizing module 'Top_level' (0#1) [C:/Users/Galbardi/MokuDo_PID_control/Top_level.vhd:19]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1197.344 ; gain = 654.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1197.344 ; gain = 654.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-3
+INFO: [Device 21-403] Loading part xc7a100tcsg324-3
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1197.344 ; gain = 654.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1197.344 ; gain = 654.277
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   22 Bit       Adders := 2     
+	   2 Input   22 Bit       Adders := 1     
++---Registers : 
+	               48 Bit    Registers := 2     
+	               22 Bit    Registers := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP I_filter_bloc/ARG, operation Mode is: A*B.
+DSP Report: operator I_filter_bloc/ARG is absorbed into DSP I_filter_bloc/ARG.
+DSP Report: operator I_filter_bloc/ARG is absorbed into DSP I_filter_bloc/ARG.
+DSP Report: Generating DSP P_filter_bloc/proportional_calcul0, operation Mode is: A*B.
+DSP Report: operator P_filter_bloc/proportional_calcul0 is absorbed into DSP P_filter_bloc/proportional_calcul0.
+DSP Report: operator P_filter_bloc/proportional_calcul0 is absorbed into DSP P_filter_bloc/proportional_calcul0.
+DSP Report: Generating DSP P_filter_bloc/proportional_calcul0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator P_filter_bloc/proportional_calcul0 is absorbed into DSP P_filter_bloc/proportional_calcul0.
+DSP Report: operator P_filter_bloc/proportional_calcul0 is absorbed into DSP P_filter_bloc/proportional_calcul0.
+WARNING: [Synth 8-7129] Port control3[21] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[20] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[19] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[18] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[17] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[16] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[15] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[14] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[13] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[12] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[11] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[10] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[9] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[8] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[7] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[6] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[5] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[4] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[3] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[2] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[1] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-7129] Port control3[0] in module Top_level is either unconnected or has no load
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[47]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[46]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[45]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[44]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[43]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[42]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[41]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[40]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[39]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[38]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[37]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[36]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[35]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[34]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[33]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[32]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[31]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[30]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[29]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[28]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[27]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[26]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[25]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[24]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[23]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[22]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[21]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[20]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[19]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[18]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[17]) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[47]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[46]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[45]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[44]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[43]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[42]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[41]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[40]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[39]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[38]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[37]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[36]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[35]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[34]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[33]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[32]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[31]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[30]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[29]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[28]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[27]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[26]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[25]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[24]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[23]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[22]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[21]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[20]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[19]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[18]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[17]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[16]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[15]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[14]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[13]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[12]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[11]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[10]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[9]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[8]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[7]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[6]__0) is unused and will be removed from module Top_level.
+WARNING: [Synth 8-3332] Sequential element (P_filter_bloc/proportional_calcul_reg[5]__0) is unused and will be removed from module Top_level.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:38 . Memory (MB): peak = 1412.023 ; gain = 868.957
+---------------------------------------------------------------------------------
+ Sort Area is  P_filter_bloc/proportional_calcul0_0 : 0 0 : 3234 4210 : Used 1 time 0
+ Sort Area is  P_filter_bloc/proportional_calcul0_0 : 0 1 : 976 4210 : Used 1 time 0
+ Sort Area is  I_filter_bloc/ARG_3 : 0 0 : 3088 3088 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|I_filter    | A*B            | 22     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|P_filter    | A*B            | 23     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|P_filter    | (PCIN>>17)+A*B | 23     | 6      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:38 . Memory (MB): peak = 1412.023 ; gain = 868.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:38 . Memory (MB): peak = 1412.023 ; gain = 868.957
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|I_filter    | A*B             | 30     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|P_filter    | A*B             | 22     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|P_filter    | (PCIN>>17+A*B)' | 22     | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |BUFG    |     1|
+|2     |CARRY4  |    37|
+|3     |DSP48E1 |     3|
+|4     |LUT2    |   114|
+|5     |LUT3    |     8|
+|6     |LUT4    |     2|
+|7     |LUT5    |    21|
+|8     |LUT6    |    58|
+|9     |FDCE    |    82|
+|10    |IBUF    |    90|
+|11    |OBUF    |    22|
++------+--------+------+
+
+Report Instance Areas: 
++------+------------------+-----------+------+
+|      |Instance          |Module     |Cells |
++------+------------------+-----------+------+
+|1     |top               |           |   438|
+|2     |  Error_bloc      |Error      |   152|
+|3     |  I_filter_bloc   |I_filter   |    99|
+|4     |  P_filter_bloc   |P_filter   |    45|
+|5     |  Sum_filter_bloc |Sum_filter |    28|
++------+------------------+-----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 102 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 1641.598 ; gain = 1098.531
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1656.621 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 40 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1772.691 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 650a3b5a
+INFO: [Common 17-83] Releasing license: Synthesis
+26 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:47 . Memory (MB): peak = 1772.691 ; gain = 1233.598
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1772.691 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Galbardi/MokuDo_PID_control/MokuDo_PID_control.runs/synth_1/Top_level.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_level_utilization_synth.rpt -pb Top_level_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri May 29 14:38:03 2026...
