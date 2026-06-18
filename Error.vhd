@@ -24,8 +24,8 @@ begin
     process (enable)
     begin 
         if enable = '1' then
-            error <= SHIFT_RIGHT( RESIZE( SIGNED(setpoint) - feedback, 16), 4) ; -- Here the shift is 4, so Kp,i,d are /16
-            reg <=   SHIFT_RIGHT( RESIZE( SIGNED(setpoint) - feedback, 16), 4) ;
+            error <= SHIFT_RIGHT( RESIZE( SIGNED(setpoint) - feedback, 16), 1) ; -- Here the shift is 1, so Kp,i,d are /2
+            reg <=   SHIFT_RIGHT( RESIZE( SIGNED(setpoint) - feedback, 16), 1) ;
       else                                                                     
             error <= reg ;
         end if;
