@@ -55,3 +55,5 @@ begin
 
 end architecture;
 ```
+# BreadBoard Implementation :
+<img width="600" height="872" alt="BreadBoard 2026-06-18 + comments" src="https://github.com/user-attachments/assets/d37cae6a-ac8d-4187-92b1-43d346e09293" />
