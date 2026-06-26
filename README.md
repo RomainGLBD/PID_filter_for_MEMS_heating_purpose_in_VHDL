@@ -16,12 +16,15 @@ library IEEE;
 use IEEE.Std_Logic_1164.all;
 use IEEE.Numeric_Std.all;
 
+-- This is the Top Level architecture needed in order to use the Moku device.
+
 architecture Behavioural of CustomInstrument is
 
 begin
     Top: entity Work.Top_level
         port map (
-            
+          
+----------------------- INPUT -----------------------
           clk               => Clk ,
           rst               => Control(15)(0) ,
           inputA            => InputA , -- MEMS voltage value
@@ -33,10 +36,12 @@ begin
           control3          => Control(3)(15 downto 0) , -- Kd constant
           control4          => Control(4)(15 downto 0) , -- n_period (number of repetition of the PWM during one period ( Freq = 2^16 Hz))
           control5          => Control(5)(15 downto 0) , -- sampling time : the time (in 1/%) on which the system will enable power in the circuit 
-                                                        -- in order to get a voltage value of the MEMS 
-          
+                                                         -- in order to get a voltage value of the MEMS 
+          control6          => Control(6)(23 downto 0) , -- System Frequency
+----------------------- OUTPUT -----------------------
+
           control_signal    => OutputA ,    -- PWM Power output
-          PWM               => OutputB(0) , -- PWM logic output
+          outputb               => OutputB , -- 
           
           status0           => Status(0) ,  -- feedback
           status1           => Status(1) ,  -- propo output
