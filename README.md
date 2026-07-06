@@ -4,7 +4,8 @@ The goal is to implement a PID control in VHDL using voltage for heating up/cool
 By maintaining a constant temperature, the MEMS frequency remains stable.
 
 # Schematic (made on Vivado v2025.2) :
-<img width="2069" height="640" alt="schematic version 17 juin" src="https://github.com/user-attachments/assets/e083345b-8056-4801-b3e8-1f9b0227af8f" />
+<img width="2052" height="618" alt="schematic v6 juillet" src="https://github.com/user-attachments/assets/6869e530-4ffc-4e21-9efd-85435b669c29" />
+
 [schematic v6 juillet.pdf](https://github.com/user-attachments/files/29707094/schematic.v6.juillet.pdf)
 
 # Moku implementation :
