@@ -28,7 +28,7 @@ begin
           clk               => Clk ,
           rst               => Control(15)(0) ,
           inputA            => InputA , -- MEMS voltage value
-          inputB            => InputB , -- Multimeter value
+     --   inputB            => InputB , -- Multimeter value
           
           control0          => Control(0)(15 downto 0) , -- Voltage reference point (you must do the conversion from the table "______")
           control1          => Control(1)(15 downto 0) , -- Kp constant
@@ -37,11 +37,12 @@ begin
           control4          => Control(4)(15 downto 0) , -- n_period (number of repetition of the PWM during one period ( Freq = 2^16 Hz))
           control5          => Control(5)(15 downto 0) , -- sampling time : the time (in 1/%) on which the system will enable power in the circuit 
                                                          -- in order to get a voltage value of the MEMS 
-          control6          => Control(6)(23 downto 0) , -- System Frequency
+-- not working : control6   => Control(6)(23 downto 0) , -- System Frequency
 ----------------------- OUTPUT -----------------------
 
           control_signal    => OutputA ,    -- PWM Power output
-          outputb               => OutputB , -- 
+          outputb           => OutputB ,    -- Control PWM voltage level (Sum_filter output)
+          outputc           => OutputC ,
           
           status0           => Status(0) ,  -- feedback
           status1           => Status(1) ,  -- propo output
