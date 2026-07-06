@@ -2,6 +2,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
+-- This asynchronous block takes the Proportional, Integral and Derivate values and adds them together to form the PID feedback
+-- If no Filter action is needed, this value is the one to use to generate the PWM duty cycle.
+
 entity Sum_filter is
     Port ( proportional_input : in SIGNED (15 downto 0);
            integral_input : in SIGNED (15 downto 0);
