@@ -67,5 +67,5 @@ end architecture;
 # BreadBoard Implementation :
 Simple Resistor 10 Ohms             |  MEMS internal resistance 23.5 Ohms (+1.7 Ohms due to cables)
 :-------------------------:|:-------------------------:
-![With the 10 Ohms resistor]<img width="600" height="872" alt="BreadBoard 2026-06-18 + comments" src="https://github.com/user-attachments/assets/d37cae6a-ac8d-4187-92b1-43d346e09293" />  |  ![With the MEMS resistance]<img width="600" height="872" alt="Breadboard 2026-07-06 + comments" src="https://github.com/user-attachments/assets/3afdab5b-6aea-44e9-955e-b4305dcaf442" />
+<img width="600" height="872" alt="BreadBoard 2026-06-18 + comments" src="https://github.com/user-attachments/assets/d37cae6a-ac8d-4187-92b1-43d346e09293" />  |  <img width="600" height="872" alt="Breadboard 2026-07-06 + comments" src="https://github.com/user-attachments/assets/3afdab5b-6aea-44e9-955e-b4305dcaf442" />
 
