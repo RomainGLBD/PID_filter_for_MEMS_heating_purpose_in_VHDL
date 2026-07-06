@@ -3,13 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 -- This module output the 2 signals needed to control the PID calcul & the sampling of the internal MEMS resistance voltage value.
--- The Frequency is  65 535 Hz.
+-- The Frequency is  (Freq_moku/65 535) = ~476.8 Hz.
 
 entity gestion_frequence is
     Port ( clk : in STD_LOGIC;
            rst : in STD_LOGIC;
            sampling_time : in UNSIGNED(4 downto 0) ; -- Allows to change the acquisition time of the voltage value (ex : 5%  => 1/0.05 = 20) 
-           frequency : in STD_LOGIC_VECTOR(23 downto 0) ; -- System Frequency
+        --   frequency : in STD_LOGIC_VECTOR(23 downto 0) ; -- System Frequency
           
            enable_sampling : out STD_LOGIC ; -- Allows the sampling of the value
            enable_PID_calc : out STD_LOGIC   -- Allows the P, I and D calculus
@@ -28,7 +28,7 @@ sampling: process (clk, rst)
         if (rst='1') then
             cpt_sampling <= to_unsigned(0,24);
         elsif clk='1' and clk'event then
-            if cpt_sampling = UNSIGNED(frequency) then
+            if cpt_sampling =  TO_UNSIGNED(65535, 24) then
                 cpt_sampling <= TO_UNSIGNED( 0, 24) ;
             else
                 cpt_sampling <= cpt_sampling + 1;
@@ -38,9 +38,9 @@ sampling: process (clk, rst)
     
 calcul_output: process (cpt_sampling)
     begin
-        if cpt_sampling > UNSIGNED(frequency) - UNSIGNED(frequency)/sampling_time then
+        if cpt_sampling >  TO_UNSIGNED(65535, 24) - ( TO_UNSIGNED(65535, 24)/sampling_time) then
             enable_sampling <= '1';
-            if cpt_sampling = UNSIGNED(frequency) - (UNSIGNED(frequency)/sampling_time)/2 then -- the center of the sampling signal (to be sure to get the right Voltage info
+            if cpt_sampling =  TO_UNSIGNED(65535, 24) - ( TO_UNSIGNED(65535, 24)/sampling_time)/2 then -- the center of the sampling signal (to be sure to get the right Voltage info
                 enable_PID_calc <= '1' ;
             else 
                 enable_PID_calc <= '0' ;
