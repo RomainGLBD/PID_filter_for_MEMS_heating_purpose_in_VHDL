@@ -11,47 +11,50 @@ architecture bench of Top_level_tb is
       Port ( clk :                in      STD_LOGIC ;
              rst :                in      STD_LOGIC ;
              inputA :             in      SIGNED (15 downto 0) ;
+             inputB :             in      SIGNED (15 downto 0) ;
              control0 :           in      STD_LOGIC_VECTOR (15 downto 0) ;
              control1 :           in      STD_LOGIC_VECTOR (15 downto 0) ;
              control2 :           in      STD_LOGIC_VECTOR (15 downto 0) ;
              control3 :           in      STD_LOGIC_VECTOR (15 downto 0) ;
              control4 :           in      STD_LOGIC_VECTOR (15 downto 0) ;
              control5 :           in      STD_LOGIC_VECTOR (15 downto 0) ;
+            -- control6 :           in      STD_LOGIC_VECTOR (23 downto 0) ;
              control_signal :     out     SIGNED (15 downto 0) ;
-             output_control_PWM : out     STD_LOGIC
+             outputb :            out     SIGNED (15 downto 0)
            );
   end component;
 
   signal clk: STD_LOGIC;
   signal rst: STD_LOGIC;
   signal inputA: SIGNED (15 downto 0);
+  signal inputB: SIGNED (15 downto 0);
   signal control0: STD_LOGIC_VECTOR (15 downto 0);
   signal control1: STD_LOGIC_VECTOR (15 downto 0);
   signal control2: STD_LOGIC_VECTOR (15 downto 0);
   signal control3: STD_LOGIC_VECTOR (15 downto 0);
   signal control4: STD_LOGIC_VECTOR (15 downto 0);
   signal control5: STD_LOGIC_VECTOR (15 downto 0);
+ -- signal control6: STD_LOGIC_VECTOR (23 downto 0);
   signal control_signal: SIGNED (15 downto 0);
-  signal output_control_PWM: STD_LOGIC ;
+  signal outputb: SIGNED (15 downto 0) ;
 
   constant clock_period: time := 10 ns;  
   signal stop_the_clock: boolean;
    
-   
 begin
-
-  uut: Top_level port map ( clk                => clk,
-                            rst                => rst,
-                            inputA             => inputA,
-                            control0           => control0,
-                            control1           => control1,
-                            control2           => control2,
-                            control3           => control3,
-                            control4           => control4,
-                            control5           => control5,
-                            control_signal     => inputA,
-                            output_control_PWM => output_control_PWM );
-
+  uut: Top_level port map ( clk            => clk,
+                            rst            => rst,
+                            inputA         => inputA,
+                            inputB         => inputB,
+                            control0       => control0,
+                            control1       => control1,
+                            control2       => control2,
+                            control3       => control3,
+                            control4       => control4,
+                            control5       => control5,
+                           -- control6       => control6,
+                            control_signal => inputA,
+                            outputb        => outputb );
   stimulus: process
   begin
 
@@ -68,8 +71,9 @@ begin
     control1       <= STD_LOGIC_VECTOR(TO_SIGNED(1, 16)); -- Kp
     control2       <= STD_LOGIC_VECTOR(TO_SIGNED(8, 16)); -- Ki
     control3       <= STD_LOGIC_VECTOR(TO_SIGNED(2, 16)); --Kd
-    control4   <= "0000000000000100" ;
+    control4   <= "0000000000000001" ;
     control5   <= "0000000000010100" ;
+  --  control6   <= STD_LOGIC_VECTOR(TO_SIGNED(65535, 24)) ;
     -- Put test bench stimulus code here
 
     wait;
