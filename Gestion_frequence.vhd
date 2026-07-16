@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 -- This module output the 2 signals needed to control the PID calcul & the sampling of the internal MEMS resistance voltage value.
--- The Frequency is  (Freq_moku/65 535) = ~476.8 Hz.
+-- The Frequency is  65 535 Hz.
 
 entity gestion_frequence is
     Port ( clk : in STD_LOGIC;
@@ -28,7 +28,7 @@ sampling: process (clk, rst)
         if (rst='1') then
             cpt_sampling <= to_unsigned(0,24);
         elsif clk='1' and clk'event then
-            if cpt_sampling =  TO_UNSIGNED(65535, 24) then
+            if cpt_sampling =  TO_UNSIGNED(32767, 24) then
                 cpt_sampling <= TO_UNSIGNED( 0, 24) ;
             else
                 cpt_sampling <= cpt_sampling + 1;
@@ -38,9 +38,9 @@ sampling: process (clk, rst)
     
 calcul_output: process (cpt_sampling)
     begin
-        if cpt_sampling >  TO_UNSIGNED(65535, 24) - ( TO_UNSIGNED(65535, 24)/sampling_time) then
+        if cpt_sampling >  TO_UNSIGNED(32767, 24) - ( TO_UNSIGNED(32767, 24)/sampling_time) then
             enable_sampling <= '1';
-            if cpt_sampling =  TO_UNSIGNED(65535, 24) - ( TO_UNSIGNED(65535, 24)/sampling_time)/2 then -- the center of the sampling signal (to be sure to get the right Voltage info
+            if cpt_sampling =  TO_UNSIGNED(32767, 24) - ( TO_UNSIGNED(32767, 24)/sampling_time)/2 then -- the center of the sampling signal (to be sure to get the right Voltage info
                 enable_PID_calc <= '1' ;
             else 
                 enable_PID_calc <= '0' ;
