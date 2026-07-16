@@ -3,12 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 -- This module generate the signal Pulse Width Modulation (PWM) to apply the correction over the MEMS internal resistance.
--- It outputs the PWM logic & the Transistor gate control signal (3.3V).
+-- Its outputs are the PWM logic & power supply (3.3V).
 
--- It also repetitivly output a signal & power sypply level (at 476.8 Hz) in order to get the voltage level of the MEMS resistance.
+--          ------- FALSE !!! -------
+-- It also repetitivly output a signal & power sypply level (at 65 535 Hz) in order to get the voltage level of the MEMS resistance.
 
 -- CAREFUL :
--- If the transistor used for switching is a PMOS you need to reverse the output logic for the alimentation control (0 <-> 3.3V).
+-- If the transistor use for switching is a PMOS you need to reverse the output logic for the alimentation control (0 <-> 3.3V).
 
 entity Gestion_PWM is
     Port ( clk              : in   STD_LOGIC;
@@ -16,7 +17,7 @@ entity Gestion_PWM is
          --  frequency        : in   STD_LOGIC_VECTOR(23 downto 0) ; -- System Frequency
            control_output   : in   STD_LOGIC ;
            alpha            : in   SIGNED (15 downto 0);
-           n_periode        : in   UNSIGNED (3 downto 0); -- Allows to divide the period of the PWM in multiple tinier periods.
+           n_periode        : in   UNSIGNED (4 downto 0); -- Allows to divide the period of the PWM in multiple tinier periods.
            sampling_time    : in   UNSIGNED(4 downto 0) ; -- Allows to reduce/increse the time it takes to get the voltage value each period, in 
                                                 --order to be right with the analogic part of the circuit (switching time, traveling time etc.)
           -- If the traveling time of your signal require you to wait X second, and those X seconds representes 5% of the period,
@@ -46,14 +47,16 @@ begin
                 if cpt >  TO_UNSIGNED(65535, 16)/n_periode then
                     cpt <= TO_UNSIGNED(0, 24);
                 else
-                    cpt <= cpt + 1 ;
+                    cpt <= cpt + 2 ; -- If you want to change frequency, change the increment. (you can't change the 65535 because it's working 
+              -- with the output voltage (alpha) to create the duty cycle). So to change frequency, you make the counter goes X time faster by
+              -- tunning the increment.
                 end if ;
 
                 -- THE PART THAT FORCES THE ACQUISITION OF THE VALUE -- 
                 if control_output = '1' then 
                     cpt <= TO_UNSIGNED(65535, 24)/sampling_time;
                     logic_output <= '1' ;
-                    alim_output <= "0101010001111010" ; -- "0000000000000000" ; -- IF PMOS -> Inverted logic because of PMOS control
+                    alim_output <= "0111111111111111" ; -- "0000000000000000" ; -- IF PMOS -> Inverted logic because of PMOS control
 
                 -- ELSE, THE STANDARD BEHAVIOUR --
                 else 
@@ -64,7 +67,7 @@ begin
                         
                         if cpt < (UNSIGNED(alpha)*2)/n_periode then -- PWM logic level up
                             logic_output <= '1' ;
-                            alim_output <= "0101010001111010" ; -- "0000000000000000" ; -- IF PMOS Inverted logic because of PMOS control
+                            alim_output <= "0111111111111111" ; -- "0000000000000000" ; -- IF PMOS Inverted logic because of PMOS control
                         else                                        -- PWM logic level down
                             logic_output <= '0' ;
                             alim_output <= "0000000000000000" ; -- "0101010001111010" ; -- 3.3 V IF PMOS Inverted logic because of PMOS control 
