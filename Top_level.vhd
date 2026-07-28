@@ -6,7 +6,7 @@ entity Top_level is
     Port ( clk :                in      STD_LOGIC ;
            rst :                in      STD_LOGIC ;
            inputA :             in      SIGNED (15 downto 0) ; -- valeur de température du MEMS
---           inputB :             in      SIGNED (15 downto 0) ; -- MULTIMETRE
+           inputB :             in      SIGNED (15 downto 0) ; -- Wheatstone Bridge
           
            control0 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- Point de référence de la température (valeur en tension)
            control1 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- Kp
@@ -14,11 +14,11 @@ entity Top_level is
            control3 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- Kd
            control4 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- n_period
            control5 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- sampling time (1/%)
--- not working : control6 :     in      STD_LOGIC_VECTOR (23 downto 0) ; -- Frequency
+           control6 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- Frequency counter increment
+           control7 :           in      STD_LOGIC_VECTOR (15 downto 0) ; -- manual duty cycle when sampling_time = 0
            
            control_signal :     out     SIGNED (15 downto 0) ; -- valeur de tension destinée à la régulation de la température
-           outputb :            out     SIGNED (15 downto 0) ; --  tension de la PWM
-           outputc :            out     SIGNED (15 downto 0) ; --  tension de la PWM
+           outputb :            out     SIGNED (15 downto 0) ; -- niveau haut et bas en tension de la PWM
           -- PWM :                out     STD_LOGIC ; -- niveau logique de la PWM (échelon)
           
            status0 : out STD_LOGIC_VECTOR (31 downto 0) ;
@@ -63,7 +63,6 @@ Feedback_filter_bloc : entity work.feedback_filter
                 feedback_filter_output => feedback_averaged       
         );
 
-  
 Error_bloc : entity work.Error
     PORT MAP( 
                 feedback    => feedback_averaged,
@@ -111,28 +110,28 @@ Sum_filter_bloc : entity work.Sum_filter
 
 Gestion_frequence_bloc : entity work.gestion_frequence
     PORT MAP (
-                clk             => clk , --clk_bis,
-                rst             => rst,
-             --   frequency       => control6,
-                sampling_time   => UNSIGNED(control5(4 downto 0)),
-                enable_sampling => E_sampling,
-                enable_PID_calc => E_PID_calc
+                clk                           => clk , --clk_bis,
+                rst                           => rst,
+                frequency_cpt_increment       => control6(5 downto 0),
+                sampling_time                 => UNSIGNED(control5(4 downto 0)),
+                enable_sampling               => E_sampling,
+                enable_PID_calc               => E_PID_calc
         );
 
 
 Gestion_PWM_bloc : entity work.Gestion_PWM
    PORT MAP (
-                clk                   => clk , --clk_bis,
-                rst                   => rst,
-                control_output        => E_sampling,
-                alpha                 => PIDF_output,
-              --  frequency       => control6,
-                sampling_time         => UNSIGNED(control5(4 downto 0)),
-                n_periode             => UNSIGNED(control4(3 downto 0)),
-                logic_output          => output_PWM_logic,
-                alim_output           => output_PWM_alim
+                clk                     => clk , --clk_bis,
+                rst                     => rst,
+                control_output          => E_sampling,
+                alpha                   => PIDF_output,
+                frequency_cpt_increment => control6(5 downto 0),
+                manual_duty_cycle       => UNSIGNED(control7(6 downto 0)),
+                sampling_time           => UNSIGNED(control5(4 downto 0)),
+                logic_output            => output_PWM_logic,
+                alim_output             => output_PWM_alim
         );
-  
+
 
 F_filter_bloc : entity work.F_filter
    PORT MAP (
@@ -160,7 +159,7 @@ status9(15 downto 0) <= control0 ;                              -- Ref Voltage
 status11(15 downto 0) <= output_PWM_alim ;                      -- PWM power supply level value
 
 outputb <= SIGNED(PIDF_output) ;
-outputc <= filter_sum_output ;
+-- outputc <= filter_sum_output ;
 -- PWM <= status7(0) ;                                             -- PWM logic level (for output B)
 
 end Behavioral;
