@@ -2,59 +2,45 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
--- This module output the 2 signals needed to control the PID calcul & the sampling of the internal MEMS resistance voltage value.
-
-
 entity gestion_frequence is
+    generic (
+        CPT_LENGTH : INTEGER := 32
+        
+        );
+        
     Port ( clk : in STD_LOGIC;
            rst : in STD_LOGIC;
-           sampling_time : in UNSIGNED(4 downto 0) ; -- Allows to change the acquisition time of the voltage value (ex : 5%  => 1/0.05 = 20) 
-           frequency_cpt_increment : in STD_LOGIC_VECTOR(5 downto 0) ; -- Increment number of the cpt
-          
-           enable_sampling : out STD_LOGIC ; -- Allows the sampling of the value
-           enable_PID_calc : out STD_LOGIC   -- Allows the P, I and D calculus
+           cpt_rst_value : in UNSIGNED(31 downto 0);
+           enable : out STD_LOGIC
            );
 end gestion_frequence;
 
 
 architecture Behavioral of gestion_frequence is
 
-signal cpt_sampling : unsigned(23 downto 0) := to_unsigned(0,24);
+signal cpt : unsigned(CPT_LENGTH-1 downto 0) := to_unsigned(0,CPT_LENGTH);
 
 begin
 
 sampling: process (clk, rst)
     begin
-        if (rst='1' OR sampling_time = TO_UNSIGNED(0, 5)) then
-            cpt_sampling <= to_unsigned(0,24);
-        
-        elsif clk='1' and clk'event then
-            if cpt_sampling =  (TO_UNSIGNED(65535, 24)) srl TO_INTEGER(UNSIGNED(frequency_cpt_increment)-1) then
-                cpt_sampling <= TO_UNSIGNED( 0, 24) ;
+        if clk='1' and clk'event then
+            if (rst='1' OR cpt = cpt_rst_value) then
+                cpt <= to_unsigned(0,CPT_LENGTH);
             else
-                cpt_sampling <= cpt_sampling + 1 ;
+                cpt <= cpt + 1 ;
             end if;
         end if;
     end process sampling;
     
-calcul_output: process (cpt_sampling)
+output: process (cpt)
     begin
-    if sampling_time = TO_UNSIGNED(0, 5) then
-          enable_sampling <= '0';
-          enable_PID_calc <= '0';
-    else
-        if cpt_sampling >  (TO_UNSIGNED(65535, 24) - ( TO_UNSIGNED(65535, 24)/sampling_time)) srl TO_INTEGER(UNSIGNED(frequency_cpt_increment)-1) then
-            enable_sampling <= '1';
-            if cpt_sampling =  (TO_UNSIGNED(65535, 24) - ( TO_UNSIGNED(65535, 24)/sampling_time)/2) srl TO_INTEGER(UNSIGNED(frequency_cpt_increment)-1) then -- the center of the sampling signal (to be sure to get the right Voltage info
-                enable_PID_calc <= '1' ;
-            else 
-                enable_PID_calc <= '0' ;
-            end if ;
-       else
-          enable_sampling <= '0';
-          enable_PID_calc <= '0'; 
-       end if;
+        if cpt = cpt_rst_value-1 then
+            enable <= '1' ;
+        else 
+            enable <= '0' ;
+                
    end if;
-end process calcul_output;
+end process output;
 
 end Behavioral;
