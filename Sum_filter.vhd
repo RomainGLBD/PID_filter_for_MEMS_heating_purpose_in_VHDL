@@ -2,13 +2,14 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
--- This asynchronous block takes the Proportional, Integral and Derivate values and adds them together to form the PID feedback
--- If no Filter action is needed, this value is the one to use to generate the PWM duty cycle.
-
 entity Sum_filter is
-    Port ( proportional_input : in SIGNED (15 downto 0);
-           integral_input : in SIGNED (15 downto 0);
-           derivate_input : in SIGNED (15 downto 0);
+    generic ( 
+        REGISTER_LENGTH : integer := 32 
+    );
+    Port ( 
+           proportional_input : in SIGNED (REGISTER_LENGTH-1 downto 0);
+           integral_input : in SIGNED (REGISTER_LENGTH-1 downto 0);
+           derivate_input : in SIGNED (REGISTER_LENGTH-1 downto 0);
            
            sum_output : out SIGNED (15 downto 0)
            );
@@ -16,15 +17,20 @@ end Sum_filter;
 
 architecture Behavioral of Sum_filter is
     
+    signal sum : SIGNED(REGISTER_LENGTH-1 downto 0) ;
     begin
+    
+    sum <= SHIFT_RIGHT(proportional_input + integral_input + derivate_input, 7) ;
+        
     process(proportional_input, integral_input, derivate_input)
     begin
-        if ( RESIZE(proportional_input, 22) + RESIZE(integral_input,22) + RESIZE(derivate_input,22) > TO_SIGNED(32767, 22)) then
+   
+        if sum > TO_SIGNED(32767, REGISTER_LENGTH) then
             sum_output <= TO_SIGNED( 32767, 16) ;
-        elsif ( RESIZE(proportional_input, 22) + RESIZE(integral_input,22) + RESIZE(derivate_input,22) < TO_SIGNED(-32768, 22)) then
-            sum_output <= TO_SIGNED( -32768, 16) ;
-       else       
-            sum_output <= proportional_input + integral_input + derivate_input ;
+        elsif sum < TO_SIGNED(800, REGISTER_LENGTH) then
+            sum_output <= TO_SIGNED( 800, 16) ;
+        else       
+            sum_output <= RESIZE(sum, 16) ;
         end if;
     end process ;
 end Behavioral;
